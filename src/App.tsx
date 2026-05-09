@@ -33,27 +33,40 @@ const LogoIcon = ({ className = "w-8 h-8" }) => (
 
 // --- Components ---
 
-const Navbar = () => (
-  <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm transition-all duration-300">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex justify-between items-center h-20">
-        <div className="flex items-center gap-3">
-          <div className="text-warm-accent">
-            <LogoIcon className="w-10 h-10" />
+const Navbar = () => {
+  const [imgError, setImgError] = useState(false);
+
+  return (
+    <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm transition-all duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          <div className="flex items-center gap-3">
+            <div className="text-warm-accent w-12 h-12 flex items-center justify-center">
+              {!imgError ? (
+                <img 
+                  src={`${import.meta.env.BASE_URL}logo.png`} 
+                  alt="HDSP Logo" 
+                  className="w-full h-full object-contain" 
+                  onError={() => setImgError(true)} 
+                />
+              ) : (
+                <LogoIcon className="w-10 h-10" />
+              )}
+            </div>
+            <div className="flex flex-col">
+              <span className="font-serif font-bold text-2xl tracking-tighter leading-none text-deep-charcoal">HDSP</span>
+              <span className="text-[7px] font-bold tracking-[0.2em] text-warm-accent uppercase whitespace-nowrap">Home Domestic Services Provider</span>
+            </div>
           </div>
-          <div className="flex flex-col">
-            <span className="font-serif font-bold text-2xl tracking-tighter leading-none text-deep-charcoal">HDSP</span>
-            <span className="text-[7px] font-bold tracking-[0.2em] text-warm-accent uppercase whitespace-nowrap">Home Domestic Services Provider</span>
-          </div>
+          
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="bg-warm-accent text-white px-6 py-3 rounded-lg font-bold text-sm tracking-wide hover:opacity-90 transition-all active:scale-95">
+            WhatsApp Karen
+          </a>
         </div>
-        
-        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="bg-warm-accent text-white px-6 py-3 rounded-lg font-bold text-sm tracking-wide hover:opacity-90 transition-all active:scale-95">
-          WhatsApp Karen
-        </a>
       </div>
-    </div>
-  </nav>
-);
+    </nav>
+  );
+};
 
 const Hero = () => (
   <section className="bg-warm-accent text-white py-20 md:py-32 relative overflow-hidden">
