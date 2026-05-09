@@ -1,8 +1,3 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -17,546 +12,324 @@ import {
   ChefHat, 
   Baby, 
   Car,
+  HeartPulse,
   ChevronRight,
   Menu,
   X,
-  Info
+  AlertCircle
 } from 'lucide-react';
 
-// --- Types ---
-interface StaffCategory {
-  title: string;
-  icon: React.ReactNode;
-  description: string;
-  salaryRange: string;
-}
+// --- Constants & Links ---
+const WHATSAPP_NUMBER = "923032632605";
+const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20HDSP%2C%20I%20am%20interested%20in%20your%20domestic%20staff%20services`;
 
-interface VettingStep {
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-}
-
-// --- Constants ---
-const STAFF_CATEGORIES: StaffCategory[] = [
-  {
-    title: "House Maids",
-    icon: <Home className="w-6 h-6 text-warm-accent" />,
-    description: "Experienced helpers for basic cleaning (4–12h) or 24/7 Live-in service.",
-    salaryRange: "Rs. 35,000 – 60,000"
-  },
-  {
-    title: "Home Cooks",
-    icon: <ChefHat className="w-6 h-6 text-warm-accent" />,
-    description: "Specialized in Desi, Continental, or specific dietary requirements.",
-    salaryRange: "Rs. 35,000 – 55,000"
-  },
-  {
-    title: "Nannies",
-    icon: <Baby className="w-6 h-6 text-warm-accent" />,
-    description: "Dedicated childcare support focusing on non-educational physical care.",
-    salaryRange: "Rs. 30,000 – 50,000"
-  },
-  {
-    title: "Drivers",
-    icon: <Car className="w-6 h-6 text-warm-accent" />,
-    description: "Background-verified drivers for family, school, or office logistics.",
-    salaryRange: "Rs. 35,000 – 50,000"
-  }
-];
-
-const VETTING_STEPS: VettingStep[] = [
-  {
-    title: "NADRA Verification",
-    description: "Mandatory 13-digit CNIC cross-referencing through Verisys for identity absolute certainty.",
-    icon: <ShieldCheck className="text-warm-accent" />
-  },
-  {
-    title: "Physical Home Visits",
-    description: "We physically visit the candidate's residence to verify utility bills and family stability.",
-    icon: <MapPin className="text-warm-accent" />
-  },
-  {
-    title: "Double Reference Calls",
-    description: "Manual interviews with at least two previous employers to verify conduct and exit reasons.",
-    icon: <UserCheck className="text-warm-accent" />
-  }
-];
-
-const NEIGHBORHOODS = ["DHA (Phases 1–8)", "Clifton", "Bahria Town", "Gulshan-e-Iqbal", "North Nazimabad", "PECHS", "KDA Scheme 1", "Malir Cantt"];
+const LogoIcon = ({ className = "w-8 h-8" }) => (
+  <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 50L50 15L90 50V85H65V60H35V85H10V50Z" className="stroke-current" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/>
+    <circle cx="50" cy="45" r="8" className="fill-current" />
+    <path d="M35 70C35 62 42 58 50 58C58 58 65 62 65 70" className="stroke-current" strokeWidth="5" strokeLinecap="round" />
+  </svg>
+);
 
 // --- Components ---
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  
+const Navbar = () => (
+  <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm transition-all duration-300">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex justify-between items-center h-20">
+        <div className="flex items-center gap-3">
+          <div className="text-warm-accent">
+            <LogoIcon className="w-10 h-10" />
+          </div>
+          <div className="flex flex-col">
+            <span className="font-serif font-bold text-2xl tracking-tighter leading-none text-deep-charcoal">HDSP</span>
+            <span className="text-[7px] font-bold tracking-[0.2em] text-warm-accent uppercase whitespace-nowrap">Home Domestic Staff Provider</span>
+          </div>
+        </div>
+        
+        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="bg-warm-accent text-white px-6 py-3 rounded-lg font-bold text-sm tracking-wide hover:opacity-90 transition-all active:scale-95">
+          WhatsApp Karen
+        </a>
+      </div>
+    </div>
+  </nav>
+);
+
+const Hero = () => (
+  <section className="bg-warm-accent text-white py-20 md:py-32 relative overflow-hidden">
+    {/* Decorative Elements */}
+    <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -mr-48 -mt-48 blur-3xl animate-pulse" />
+    <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/5 rounded-full -ml-32 -mb-32 blur-2xl" />
+    
+    <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <span className="inline-block bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm font-semibold mb-8 tracking-wide">
+          ✦ Karachi's Most Trusted Domestic Staff Agency
+        </span>
+        <h1 className="text-4xl md:text-7xl font-serif font-bold mb-8 leading-[1.1] max-w-4xl mx-auto">
+          Verified. Trained. Reliable. <br/>Domestic Staff for Your Home.
+        </h1>
+        <p className="text-lg md:text-xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed">
+          Apne ghar mein sirf verified aur trained staff laayein. <br className="hidden md:block" />
+          CNIC checked, police cleared, professionally trained — har staff member.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href={WHATSAPP_LINK} className="bg-cloud-dancer text-warm-accent px-8 py-5 rounded-lg font-bold text-lg shadow-xl hover:bg-white transition-all transform active:scale-95">
+            Abhi WhatsApp Karen
+          </a>
+          <a href="#services" className="border-2 border-white/30 text-white px-8 py-5 rounded-lg font-bold text-lg hover:bg-white/10 transition-all">
+            Our Services
+          </a>
+        </div>
+      </motion.div>
+    </div>
+  </section>
+);
+
+const TrustBar = () => (
+  <section className="bg-deep-charcoal py-8 overflow-hidden">
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-sm md:text-base text-white/80 font-medium">
+        <span className="flex items-center gap-2 px-4 border-r border-white/10 last:border-none">CNIC Verified Staff</span>
+        <span className="flex items-center gap-2 px-4 border-r border-white/10 last:border-none">Police Clearance Checked</span>
+        <span className="flex items-center gap-2 px-4 border-r border-white/10 last:border-none">Professionally Trained</span>
+        <span className="flex items-center gap-2 px-4 border-r border-white/10 last:border-none">30-Day Replacement Guarantee</span>
+        <span className="flex items-center gap-2 px-4 last:border-none uppercase tracking-widest text-xs opacity-60">DHA · Clifton · PECHS</span>
+      </div>
+    </div>
+  </section>
+);
+
+const PainPoints = () => {
+  const points = [
+    {
+      emoji: "😟",
+      problem: "Humari maid ne 2 hafte mein chhor diya",
+      solution: "HDSP offers 30-day replacement guarantee with zero arguments."
+    },
+    {
+      emoji: "😰",
+      problem: "Unverified tha — ghar mein tension ho gayi",
+      solution: "Every HDSP staff carries a QR-linked verified ID card for instant tracking."
+    },
+    {
+      emoji: "😤",
+      problem: "Referrals pe trust nahi kar sakta",
+      solution: "CNIC + police clearance + double reference checks before any placement."
+    }
+  ];
+
   return (
-    <nav className="glass-nav">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 flex items-center justify-center overflow-hidden">
-              <img 
-                src="logo.png" 
-                alt="HDSP Logo" 
-                className="w-full h-full object-contain" 
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                  e.currentTarget.parentElement!.innerHTML = '<div class="w-10 h-10 bg-warm-accent rounded-xl flex items-center justify-center"><svg class="text-white w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg></div>';
-                }}
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-serif font-bold text-2xl tracking-tight leading-none text-warm-accent">HDSP</span>
-              <span className="text-[8px] font-bold tracking-[0.2em] text-deep-charcoal/60 uppercase">Home Domestic Services Provider</span>
-            </div>
-          </div>
-          
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#vetting" className="text-sm font-medium hover:text-warm-accent transition-colors">Vetting</a>
-            <a href="#categories" className="text-sm font-medium hover:text-warm-accent transition-colors">Categories</a>
-            <a href="#neighborhoods" className="text-sm font-medium hover:text-warm-accent transition-colors">Locations</a>
-            <a href="https://wa.me/920000000000" className="btn-whatsapp">
-              <MessageCircle className="w-5 h-5" />
-              WhatsApp Us
-            </a>
-          </div>
-          
-          <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X /> : <Menu />}
-          </button>
+    <section className="bg-bone py-20">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-serif mb-6 text-deep-charcoal">
+            Aap ke ghar mein kaun aa raha hai — kya aap jaante hain?
+          </h2>
+          <p className="text-gray-500 max-w-2xl mx-auto text-lg italic leading-relaxed">
+            Every family in Karachi has a story. An unreliable maid, an unverified driver, a stolen item. <br className="hidden md:block"/>
+            HDSP exists to end these stories.
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-3 gap-8">
+          {points.map((p, idx) => (
+            <motion.div 
+              key={idx}
+              whileHover={{ y: -5 }}
+              className="bg-white p-8 rounded-xl border-l-4 border-warm-accent shadow-sm"
+            >
+              <span className="text-4xl mb-6 block">{p.emoji}</span>
+              <h4 className="text-xl font-bold mb-4 text-deep-charcoal">"{p.problem}"</h4>
+              <p className="text-gray-600 leading-relaxed italic">
+                <span className="text-warm-accent font-bold not-italic">HDSP Resolution:</span> {p.solution}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
-      
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-gray-100 overflow-hidden"
-          >
-            <div className="flex flex-col p-6 gap-4">
-              <a href="#vetting" onClick={() => setIsOpen(false)}>Vetting</a>
-              <a href="#categories" onClick={() => setIsOpen(false)}>Categories</a>
-              <a href="#neighborhoods" onClick={() => setIsOpen(false)}>Locations</a>
-              <a href="https://wa.me/920000000000" className="btn-whatsapp justify-center">
-                <MessageCircle className="w-5 h-5" />
-                WhatsApp Us
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+    </section>
   );
 };
 
-const Hero = () => (
-  <section className="relative pt-20 pb-32 overflow-hidden">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid lg:grid-cols-2 gap-16 items-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-warm-accent/10 text-warm-accent font-medium text-sm mb-6">
-            <Clock className="w-4 h-4" />
-            2026 Premium Benchmarks
-          </div>
-          <h1 className="text-5xl md:text-7xl mb-6 leading-[1.1]">
-            Domestic Staffing <br />
-            <span className="text-warm-accent italic font-light font-sans">Across All Karachi</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-10 max-w-lg leading-relaxed">
-            We don't sell replacements. We sell perfect matches. 
-            Experience the rigor of manual vetting for households across every corner of Karachi.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a href="#request" className="btn-primary flex items-center justify-center gap-2">
-              Request Staff Now
-              <ChevronRight className="w-4 h-4" />
-            </a>
-            <div className="flex items-center gap-3 px-4 border-l border-gray-200">
-              <div className="flex -space-x-2">
-                {[
-                  "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
-                  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
-                  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80"
-                ].map((url, i) => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-bone bg-linen overflow-hidden">
-                    <img src={`${url}?auto=format&fit=crop&q=80&w=100`} alt="User" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                  </div>
-                ))}
-              </div>
-              <span className="text-sm text-gray-500 font-medium tracking-tight">Trusted by 500+ <br/>KHI Families</span>
-            </div>
-          </div>
-        </motion.div>
-        
-        <motion.div 
-          className="relative grid grid-cols-2 gap-4"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <div className="space-y-4 pt-12">
-            <div className="aspect-[4/5] rounded-[2rem] bg-gray-300 overflow-hidden relative group">
-              <img 
-                src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=85&w=800" 
-                alt="Professional Cook" 
-                className="w-full h-full object-cover grayscale active:grayscale-0 transition-all duration-700" 
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-deep-charcoal/60 to-transparent p-6 flex flex-col justify-end text-white">
-                <span className="font-medium">Expert Home Cooks</span>
-              </div>
-            </div>
-            <div className="bento-card p-6">
-              <div className="text-3xl font-display font-bold text-warm-accent">98%</div>
-              <div className="text-sm text-gray-500">First-time Match Joy</div>
-            </div>
-          </div>
-          <div className="space-y-4">
-            <div className="bento-card bg-deep-charcoal text-white p-6 border-none">
-              <ShieldCheck className="w-8 h-8 text-warm-accent mb-4" />
-              <h3 className="text-lg leading-tight text-white font-display">Hand-verified documentation for every single placement.</h3>
-            </div>
-            <div className="aspect-[4/5] rounded-[2rem] bg-gray-300 overflow-hidden relative group">
-              <img 
-                src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=85&w=800" 
-                alt="Professional Driver" 
-                className="w-full h-full object-cover grayscale active:grayscale-0 transition-all duration-700" 
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-deep-charcoal/60 to-transparent p-6 flex flex-col justify-end text-white">
-                <span className="font-medium">Verified Drivers</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </div>
-  </section>
-);
+const Services = () => {
+  const items = [
+    { icon: <Home className="w-8 h-8" />, title: "Maids", desc: "Household cleaning, laundry & daily management" },
+    { icon: <ChefHat className="w-8 h-8" />, title: "Chefs", desc: "Trained cooks for daily meals & special occasions" },
+    { icon: <Baby className="w-8 h-8" />, title: "Nannies", desc: "Trusted childcare professionals for your family" },
+    { icon: <Car className="w-8 h-8" />, title: "Drivers", desc: "Licensed, verified drivers for family use" },
+    { icon: <HeartPulse className="w-8 h-8" />, title: "Patient Care", desc: "Trained attendants for elderly & post-surgery care" }
+  ];
 
-const BentoGrid = () => (
-  <section className="content-chunk bg-linen/20">
-    <div className="max-w-7xl mx-auto px-4">
-      <div className="grid md:grid-cols-4 gap-6">
-        <div className="bento-card col-span-1 md:col-span-2">
-          <div className="flex items-start justify-between mb-8">
-            <div>
-              <h2 className="text-3xl mb-2">Our Vetting Pillars</h2>
-              <p className="text-gray-500">Beyond the standard background check.</p>
-            </div>
-            <div className="p-3 bg-warm-accent/10 rounded-2xl">
-              <UserCheck className="text-warm-accent" />
-            </div>
-          </div>
-          <div className="grid sm:grid-cols-3 gap-6">
-            {VETTING_STEPS.map((step, idx) => (
-              <div key={idx} className="space-y-3">
-                <div className="w-10 h-10 rounded-full bg-warm-accent/10 flex items-center justify-center shadow-sm">
-                  {step.icon}
-                </div>
-                <h4 className="font-display font-bold text-xs uppercase tracking-wider text-warm-accent">{step.title}</h4>
-                <p className="text-[10px] text-gray-500 leading-relaxed uppercase tracking-widest">{step.description}</p>
-              </div>
-            ))}
-          </div>
+  return (
+    <section id="services" className="py-20">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-deep-charcoal mb-4">Trained Staff for Every Need</h2>
+          <div className="w-24 h-1 bg-warm-accent mx-auto rounded-full" />
         </div>
         
-        <div className="bento-card col-span-1 bg-warm-accent text-white border-none overflow-hidden relative">
-          <div className="relative z-10">
-            <h2 className="text-3xl mb-4 text-white">Serving <br/>All Karachi</h2>
-            <p className="text-white/80 mb-6 text-sm">From Clifton to North Nazimabad, we bridge the gap between quality staff and reliable homes.</p>
-            <ul className="space-y-2">
-              {NEIGHBORHOODS.slice(0,3).map((n, i) => (
-                <li key={i} className="flex items-center gap-2 text-sm font-medium">
-                  <CheckCircle2 className="w-4 h-4 text-white/60" />
-                  {n}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <MapPin className="absolute -bottom-8 -right-8 w-40 h-40 text-white/10" />
-        </div>
-
-        <div className="bento-card col-span-1 p-0 overflow-hidden relative group">
-          <img 
-            src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=600" 
-            alt="Premium Interior" 
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-deep-charcoal/20 group-hover:bg-deep-charcoal/10 transition-colors" />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          {items.map((it, idx) => (
+            <motion.div 
+              key={idx}
+              whileHover={{ y: -6 }}
+              className="p-8 bg-bone rounded-2xl text-center group cursor-default shadow-sm hover:shadow-xl transition-all"
+            >
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 text-warm-accent group-hover:bg-warm-accent group-hover:text-white transition-all shadow-inner">
+                {it.icon}
+              </div>
+              <h3 className="text-xl font-bold mb-3">{it.title}</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">{it.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
-const StaffShowcase = () => (
-  <section id="categories" className="content-chunk bg-bone/30">
-    <div className="max-w-7xl mx-auto px-4">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl mb-4">Precision Placements</h2>
-        <p className="text-gray-500 max-w-2xl mx-auto italic"> Transparent 2026 salary benchmarks to manage expectations from day one.</p>
-      </div>
+const Verification = () => (
+  <section className="bg-deep-charcoal text-white py-24">
+    <div className="max-w-7xl mx-auto px-4 text-center">
+      <h2 className="text-4xl md:text-5xl font-serif font-bold mb-16">How We Verify Every Staff Member</h2>
       
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {STAFF_CATEGORIES.map((cat, idx) => (
-          <motion.div 
-            key={idx} 
-            whileHover={{ y: -8 }}
-            className="bento-card bg-bone group cursor-default"
-          >
-            <div className="w-12 h-12 rounded-2xl bg-cloud-dancer flex items-center justify-center mb-6 group-hover:bg-warm-accent group-hover:text-white transition-colors">
-              {cat.icon}
-            </div>
-            <h3 className="text-xl mb-3">{cat.title}</h3>
-            <p className="text-sm text-gray-500 mb-6 leading-relaxed">{cat.description}</p>
-            <div className="pt-4 border-t border-gray-100">
-              <span className="text-xs font-bold text-gray-400 uppercase tracking-widest block mb-1">Expected Salary</span>
-              <span className="text-lg font-display font-bold text-warm-accent">{cat.salaryRange}</span>
-            </div>
-          </motion.div>
+      <div className="grid md:grid-cols-5 gap-8 text-left">
+        {[
+          { n: "1", t: "CNIC Verification", d: "NADRA confirmed identity." },
+          { n: "2", t: "Police Clearance", d: "Criminal background check, non-negotiable." },
+          { n: "3", t: "Reference Checks", d: "Previous employers contacted directly." },
+          { n: "4", t: "Professional Training", d: "Role-specific training before placement." },
+          { n: "5", t: "HDSP Verified Card", d: "QR-linked card, scannable by client anytime." }
+        ].map((step, i) => (
+          <div key={i} className="relative p-6 border border-white/10 rounded-xl hover:bg-white/5 transition-colors">
+            <span className="text-7xl font-bold text-white/5 absolute -top-8 left-4">{step.n}</span>
+            <h4 className="text-xl font-bold mb-4 relative z-10 text-warm-accent">{step.t}</h4>
+            <p className="text-white/60 text-sm leading-relaxed relative z-10">{step.d}</p>
+          </div>
         ))}
       </div>
     </div>
   </section>
 );
 
-const RequestForm = () => (
-  <section id="request" className="content-chunk bg-linen/40">
-    <div className="max-w-3xl mx-auto px-4">
-      <div className="bento-card bg-bone p-10 md:p-16 text-center">
-        <h2 className="text-4xl mb-6">Request Your Perfect Match</h2>
-        <p className="text-gray-500 mb-10">Tell us your requirements, and our physical vetting team will begin the search today.</p>
-        
-        <form className="space-y-4 text-left" onSubmit={(e) => e.preventDefault()}>
-          <div className="grid sm:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label className="text-sm font-semibold ml-4">Full Name</label>
-              <input type="text" className="w-full px-6 py-4 rounded-2xl bg-cloud-dancer border-none focus:ring-2 focus:ring-warm-accent outline-none" placeholder="Enter your name" />
+const Testimonials = () => (
+  <section className="bg-bone py-24">
+    <div className="max-w-7xl mx-auto px-4">
+      <h2 className="text-3xl md:text-5xl font-serif font-bold text-center mb-16">What Our Clients Say</h2>
+      
+      <div className="grid md:grid-cols-3 gap-8">
+        {[
+          { name: "Samina R.", loc: "Clifton", text: "Found an amazing patient care attendant for my father. She's so professional that my father now asks for her by name every morning." },
+          { name: "Ayesha K.", loc: "DHA Phase 6", text: "Found HDSP via WhatsApp group recommendation. It's been 4 months and I've had zero issues. The documentation sharing was very reassuring." },
+          { name: "Farhan M.", loc: "DHA Phase 8", text: "Returned from Dubai and was worried about local staffing. HDSP's process and accountability is exactly what Karachi needed." }
+        ].map((t, i) => (
+          <div key={i} className="bg-white p-8 rounded-2xl shadow-sm italic text-gray-600 relative">
+            <div className="w-12 h-12 bg-cloud-dancer rounded-full flex items-center justify-center font-bold text-warm-accent mb-6">
+              {t.name[0]}
             </div>
-            <div className="space-y-2">
-              <label className="text-sm font-semibold ml-4">Phone (WhatsApp)</label>
-              <input type="tel" className="w-full px-6 py-4 rounded-2xl bg-cloud-dancer border-none focus:ring-2 focus:ring-warm-accent outline-none" placeholder="+92 ..." />
+            <p className="mb-6 leading-relaxed">"{t.text}"</p>
+            <div className="not-italic">
+              <p className="font-bold text-deep-charcoal">{t.name}</p>
+              <p className="text-xs text-warm-accent font-bold uppercase tracking-widest">{t.loc}</p>
             </div>
           </div>
-          <div className="space-y-2">
-            <label className="text-sm font-semibold ml-4">Required Staff Category</label>
-            <select className="w-full px-6 py-4 rounded-2xl bg-cloud-dancer border-none focus:ring-2 focus:ring-warm-accent outline-none appearance-none">
-              <option>House Maid (Live-in)</option>
-              <option>House Maid (Daily)</option>
-              <option>Home Cook</option>
-              <option>Nanny</option>
-              <option>Driver</option>
-            </select>
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-semibold ml-4">Preferred Neighborhood</label>
-            <select className="w-full px-6 py-4 rounded-2xl bg-cloud-dancer border-none focus:ring-2 focus:ring-warm-accent outline-none appearance-none">
-              {NEIGHBORHOODS.map(n => <option key={n}>{n}</option>)}
-            </select>
-          </div>
-          <button className="btn-primary w-full mt-6 py-5 text-lg">Send Request</button>
-        </form>
-        
-        <div className="mt-8 flex items-center justify-center gap-6 grayscale opacity-50">
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4" />
-            <span className="text-xs font-bold uppercase tracking-widest">NADRA Verified</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4" />
-            <span className="text-xs font-bold uppercase tracking-widest">Reference Checked</span>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 );
 
+const Guarantee = () => (
+  <section className="bg-warm-accent py-20 text-white text-center relative overflow-hidden">
+    <div className="max-w-4xl mx-auto px-4 relative z-10">
+      <h2 className="text-3xl md:text-6xl font-serif font-bold mb-6">30-Din Mein Satisfy Nahi? <br />Hum Replace Karenge.</h2>
+      <p className="text-xl opacity-90 mb-10 italic">
+        Koi sawaal nahi. Koi argument nahi. <br className="hidden md:block"/>
+        Free replacement within 30 days — guaranteed.
+      </p>
+      <a href={WHATSAPP_LINK} className="inline-block bg-white text-warm-accent px-10 py-5 rounded-lg font-bold text-lg hover:bg-cloud-dancer transition-all transform active:scale-95 shadow-xl">
+        Guarantee Ke Baare Mein Janein
+      </a>
+    </div>
+  </section>
+);
+
+const FinalCTA = () => (
+  <section className="py-24 bg-white text-center">
+    <div className="max-w-3xl mx-auto px-4">
+      <h2 className="text-4xl md:text-5xl font-serif font-bold text-deep-charcoal mb-6">Ready to Find Your Perfect Household Staff?</h2>
+      <p className="text-xl text-gray-500 mb-12">
+        Aaj hi humse baat karein. WhatsApp pe message karein — <br className="hidden md:block"/> hum 24 ghante mein jawab denge.
+      </p>
+      <a href={WHATSAPP_LINK} className="inline-flex items-center gap-4 bg-[#25d366] text-white px-10 py-6 rounded-xl font-bold text-xl hover:opacity-90 transition-all shadow-2xl hover:shadow-green-500/20 active:scale-95">
+        <MessageCircle className="w-8 h-8" />
+        WhatsApp Karen — 0303-2632605
+      </a>
+    </div>
+  </section>
+);
+
 const Footer = () => (
-  <footer className="py-20 bg-deep-charcoal text-white">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid md:grid-cols-4 gap-12 mb-16">
-        <div className="col-span-1 md:col-span-2">
-          <div className="flex items-center gap-3 mb-6">
-            <img 
-              src="logo.png" 
-              alt="HDSP Logo" 
-              className="w-12 h-12 object-contain brightness-0 invert opacity-80" 
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                e.currentTarget.parentElement!.innerHTML = '<div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center"><svg class="text-warm-accent w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg></div>';
-              }}
-            />
-            <div className="flex flex-col">
-              <span className="font-serif font-bold text-3xl tracking-tight text-white">HDSP</span>
-              <span className="text-[8px] font-bold tracking-[0.2em] text-white/60 uppercase">Home Domestic Services Provider</span>
-            </div>
-          </div>
-          <p className="text-gray-400 max-w-sm mb-6">
-            Karachi's trusted boutique domestic placement agency. We provide verified staff for households across all districts of Karachi.
-          </p>
-          <div className="flex gap-4">
-            <a href="https://wa.me/923000000000" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-warm-accent transition-colors">
-              <MessageCircle className="w-5 h-5" />
-            </a>
-          </div>
-        </div>
-        
-        <div>
-          <h4 className="font-display font-bold text-sm uppercase tracking-widest text-warm-accent mb-6">Quick Links</h4>
-          <ul className="space-y-4 text-gray-400">
-            <li><a href="#vetting" className="hover:text-white transition-colors">Vetting Process</a></li>
-            <li><a href="#categories" className="hover:text-white transition-colors">Staff Categories</a></li>
-            <li><a href="#neighborhoods" className="hover:text-white transition-colors">Target Neighborhoods</a></li>
-            <li><a href="#request" className="hover:text-white transition-colors">Placement Fees</a></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h4 className="font-display font-bold text-sm uppercase tracking-widest text-warm-accent mb-6">Karachi HQs</h4>
-          <address className="not-italic text-gray-400 space-y-4">
-            <p>DHA Phase 6, Karachi</p>
-            <p>Clifton Block 4, Karachi</p>
-            <p className="flex items-center gap-2">
-              <MessageCircle className="w-4 h-4 text-warm-accent" />
-              +92 3XX-XXXXXXX
-            </p>
-          </address>
-        </div>
+  <footer className="bg-deep-charcoal py-12 text-center border-t border-white/5">
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="text-white/40 text-sm mb-6 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4">
+        <span className="font-bold text-white/60">HDSP — Home Domestic Services Provider</span>
+        <span className="hidden md:block">•</span>
+        <span>Karachi, Pakistan</span>
+        <span className="hidden md:block">•</span>
+        <span>0303-2632605</span>
       </div>
-      
-      <div className="pt-8 border-t border-white/10">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <div className="bg-white/5 border border-white/10 p-4 rounded-xl max-w-2xl">
-            <div className="flex items-center gap-2 text-warm-accent mb-2">
-              <Info className="w-4 h-4" />
-              <span className="text-xs font-bold uppercase tracking-tighter">Placement Policy</span>
-            </div>
-            <p className="text-[10px] uppercase tracking-wider text-gray-500 leading-relaxed">
-              Legal Disclaimer: Home Domestic Staff Provider is a recruitment facilitation agency. Our service fee is for the search, manual vetting, and verified introduction. We do not provide replacement staff or manage payroll. The employment contract is strictly between the employer and the employee.
-            </p>
-          </div>
-          <p className="text-xs text-gray-500">&copy; 2026 Home Domestic Staff Provider. Built for trust.</p>
-        </div>
+      <div className="text-[10px] text-white/20 uppercase tracking-[0.3em] font-bold">
+        Serving DHA · Clifton · PECHS · Bahria Town
+      </div>
+      <div className="mt-8 text-[10px] text-white/10 uppercase tracking-widest">
+        &copy; 2026 HDSP Karachi. Trusted Partnerships Since Inception.
       </div>
     </div>
   </footer>
 );
 
+const FloatingWA = () => (
+  <motion.a 
+    href={WHATSAPP_LINK}
+    target="_blank"
+    rel="noopener noreferrer"
+    initial={{ scale: 0, opacity: 0 }}
+    animate={{ scale: 1, opacity: 1 }}
+    transition={{ delay: 1, type: 'spring' }}
+    className="fixed bottom-8 right-8 z-[100] group"
+  >
+    <div className="absolute inset-0 bg-[#25d366] rounded-full blur-xl opacity-40 animate-pulse group-hover:scale-125 transition-transform" />
+    <div className="relative w-16 h-16 bg-[#25d366] rounded-full flex items-center justify-center text-white shadow-2xl shadow-green-500/40">
+      <MessageCircle className="w-8 h-8" />
+      <span className="absolute right-full mr-4 bg-white text-deep-charcoal px-3 py-1 rounded-lg text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+        Chat with HDSP
+      </span>
+    </div>
+  </motion.a>
+);
+
 export default function App() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen font-sans text-deep-charcoal selection:bg-warm-accent/20">
       <Navbar />
-      <Hero />
-      <BentoGrid />
-      <StaffShowcase />
-      
-      {/* Vetting Detail Section - The 'Human' Element */}
-      <section id="vetting" className="content-chunk bg-cloud-dancer">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div className="relative">
-              <div className="aspect-square rounded-[3rem] bg-gray-100 overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=85&w=1000" 
-                  alt="Documentation Check" 
-                  className="w-full h-full object-cover" 
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="absolute -bottom-10 -right-10 bento-card bg-warm-accent text-white border-none p-8 max-w-xs scale-90 md:scale-100 shadow-2xl">
-                <div className="flex items-center gap-3 mb-4">
-                  <UserCheck className="w-8 h-8 text-white" />
-                  <span className="font-display font-bold text-white">The Vetting Dossier</span>
-                </div>
-                <p className="text-sm opacity-90 leading-relaxed text-white">
-                  Every staff member arrives with a physical PDF folder containing NADRA Verisys, a recent utility bill, and reference notes.
-                </p>
-              </div>
-            </div>
-            
-            <div className="space-y-8">
-              <h2 className="text-4xl md:text-5xl leading-tight">We do the work worth the commission.</h2>
-              <p className="text-lg text-gray-500 leading-relaxed">
-                In a world of digital shortcuts, we prioritize physical truth. 
-                Our team visits homes, talks to old employers, and verifies CNICs 
-                at the NADRA terminal. We charge for the high-quality match, 
-                not for a revolving door of replacements.
-              </p>
-              
-              <ul className="space-y-6">
-                {[
-                  { t: "Human Intelligence", d: "We gauge character, not just skills, through in-depth physical interviews." },
-                  { t: "Address Verification", d: "Utility bills are checked against physical residence to ensure accountability." },
-                  { t: "Ethical Sourcing", d: "Fair wages and clear expectations for both staff and employers." }
-                ].map((item, idx) => (
-                  <li key={idx} className="flex gap-4">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-warm-accent/20 flex items-center justify-center mt-1">
-                      <div className="w-2 h-2 rounded-full bg-warm-accent" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold mb-1">{item.t}</h4>
-                      <p className="text-sm text-gray-500">{item.d}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <RequestForm />
-
-      <section className="py-20 bg-bone/50 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="bento-card bg-deep-charcoal border-none p-0 overflow-hidden grid md:grid-cols-2 group">
-            <div className="p-12 md:p-20 flex flex-col justify-center">
-              <h2 className="text-4xl text-white mb-6 leading-tight">The Boutique <br />Recruitment Standard.</h2>
-              <p className="text-white/60 text-lg mb-8 leading-relaxed">
-                We aren't a mass-market agency. We are a family-run staffing consultancy that treats your home with the same respect we treat our own.
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center">
-                  <ShieldCheck className="text-warm-accent w-6 h-6" />
-                </div>
-                <span className="text-white/80 font-medium font-display tracking-widest uppercase text-xs">Serving All of Karachi</span>
-              </div>
-            </div>
-            <div className="relative h-64 md:h-auto overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=85&w=1000" 
-                alt="Luxury Karachi Home" 
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-deep-charcoal via-deep-charcoal/20 to-transparent md:block hidden" />
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <main>
+        <Hero />
+        <TrustBar />
+        <PainPoints />
+        <Services />
+        <Verification />
+        <Testimonials />
+        <Guarantee />
+        <FinalCTA />
+      </main>
       <Footer />
-      
-      {/* Floating WhatsApp for Mobile Focus */}
-      <motion.div 
-        className="fixed bottom-8 right-8 md:hidden z-50"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <a href="https://wa.me/923000000000" className="w-16 h-16 bg-[#25D366] rounded-full shadow-2xl flex items-center justify-center text-white">
-          <MessageCircle className="w-8 h-8" />
-        </a>
-      </motion.div>
+      <FloatingWA />
     </div>
   );
 }

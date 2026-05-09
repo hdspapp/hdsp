@@ -6,12 +6,12 @@
   --font-display: "Space Grotesk", sans-serif;
   --font-serif: "Playfair Display", serif;
   
-  --color-cloud-dancer: #F1E4C9; /* Changed to match logo cream */
-  --color-bone: #FAF7F2;
-  --color-warm-accent: #BC4B20; /* Changed to match logo terracotta */
-  --color-deep-charcoal: #2A2826;
-  --color-soft-clay: #8B3617;
-  --color-linen: #E5DCC5;
+  --color-cloud-dancer: #F5ECD7; /* Brand Cream */
+  --color-bone: #f9f6f1; /* Light Background */
+  --color-warm-accent: #C1440E; /* Brand Terracotta */
+  --color-deep-charcoal: #1a1a1a; /* Brand Dark */
+  --color-soft-clay: #A0380B;
+  --color-linen: #E8DCC0;
 }
 
 @layer base {
