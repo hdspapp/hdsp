@@ -108,7 +108,7 @@ const Navbar = () => {
             </div>
             <div className="flex flex-col">
               <span className="font-serif font-bold text-2xl tracking-tight leading-none text-warm-accent">HDSP</span>
-              <span className="text-[8px] font-bold tracking-[0.2em] text-deep-charcoal/60 uppercase">Home Domestic Staff Provider</span>
+              <span className="text-[8px] font-bold tracking-[0.2em] text-deep-charcoal/60 uppercase">Home Domestic Services Provider</span>
             </div>
           </div>
           
@@ -204,13 +204,13 @@ const Hero = () => (
           <div className="space-y-4 pt-12">
             <div className="aspect-[4/5] rounded-[2rem] bg-gray-300 overflow-hidden relative group">
               <img 
-                src="https://images.unsplash.com/photo-1581578731548-c64695ce6958?auto=format&fit=crop&q=85&w=800" 
-                alt="Professional House Maid" 
+                src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=85&w=800" 
+                alt="Professional Cook" 
                 className="w-full h-full object-cover grayscale active:grayscale-0 transition-all duration-700" 
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-deep-charcoal/60 to-transparent p-6 flex flex-col justify-end text-white">
-                <span className="font-medium">Verified House Maids</span>
+                <span className="font-medium">Expert Home Cooks</span>
               </div>
             </div>
             <div className="bento-card p-6">
@@ -221,17 +221,17 @@ const Hero = () => (
           <div className="space-y-4">
             <div className="bento-card bg-deep-charcoal text-white p-6 border-none">
               <ShieldCheck className="w-8 h-8 text-warm-accent mb-4" />
-              <h3 className="text-lg leading-tight text-white">Hand-verified documentation for every single placement.</h3>
+              <h3 className="text-lg leading-tight text-white font-display">Hand-verified documentation for every single placement.</h3>
             </div>
             <div className="aspect-[4/5] rounded-[2rem] bg-gray-300 overflow-hidden relative group">
               <img 
-                src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=85&w=800" 
-                alt="Professional Nanny" 
+                src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=85&w=800" 
+                alt="Professional Driver" 
                 className="w-full h-full object-cover grayscale active:grayscale-0 transition-all duration-700" 
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-deep-charcoal/60 to-transparent p-6 flex flex-col justify-end text-white">
-                <span className="font-medium">Trusted Nannies</span>
+                <span className="font-medium">Verified Drivers</span>
               </div>
             </div>
           </div>
@@ -398,7 +398,7 @@ const Footer = () => (
             />
             <div className="flex flex-col">
               <span className="font-serif font-bold text-3xl tracking-tight text-white">HDSP</span>
-              <span className="text-[8px] font-bold tracking-[0.2em] text-white/60 uppercase">Home Domestic Staff Provider</span>
+              <span className="text-[8px] font-bold tracking-[0.2em] text-white/60 uppercase">Home Domestic Services Provider</span>
             </div>
           </div>
           <p className="text-gray-400 max-w-sm mb-6">
