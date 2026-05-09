@@ -1,72 +1,41 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
-  ShieldCheck, 
-  Users, 
-  MapPin, 
-  CheckCircle2, 
   MessageCircle, 
-  Clock, 
-  UserCheck, 
   Home, 
   ChefHat, 
   Baby, 
   Car,
-  HeartPulse,
-  ChevronRight,
-  Menu,
-  X,
-  AlertCircle
+  HeartPulse
 } from 'lucide-react';
 
 // --- Constants & Links ---
 const WHATSAPP_NUMBER = "923032632605";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20HDSP%2C%20I%20am%20interested%20in%20your%20domestic%20staff%20services`;
 
-const LogoIcon = ({ className = "w-8 h-8" }) => (
-  <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 50L50 15L90 50V85H65V60H35V85H10V50Z" className="stroke-current" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/>
-    <circle cx="50" cy="45" r="8" className="fill-current" />
-    <path d="M35 70C35 62 42 58 50 58C58 58 65 62 65 70" className="stroke-current" strokeWidth="5" strokeLinecap="round" />
-  </svg>
-);
-
 // --- Components ---
 
-const Navbar = () => {
-  const [imgError, setImgError] = useState(false);
-
-  return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <div className="flex items-center gap-3">
-            <div className="text-warm-accent w-12 h-12 flex items-center justify-center">
-              {!imgError ? (
-                <img 
-                  src={`${import.meta.env.BASE_URL}logo.png`} 
-                  alt="HDSP Logo" 
-                  className="w-full h-full object-contain" 
-                  onError={() => setImgError(true)} 
-                />
-              ) : (
-                <LogoIcon className="w-10 h-10" />
-              )}
-            </div>
-            <div className="flex flex-col">
-              <span className="font-serif font-bold text-2xl tracking-tighter leading-none text-deep-charcoal">HDSP</span>
-              <span className="text-[7px] font-bold tracking-[0.2em] text-warm-accent uppercase whitespace-nowrap">Home Domestic Services Provider</span>
-            </div>
+const Navbar = () => (
+  <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm transition-all duration-300">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex justify-between items-center h-20">
+        <div className="flex items-center gap-3">
+          <div className="text-warm-accent flex items-center justify-start">
+            <img 
+              src="/logo.png" 
+              alt="HDSP Logo" 
+              className="w-full h-full object-contain object-left max-h-16"
+            />
           </div>
-          
-          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="bg-warm-accent text-white px-6 py-3 rounded-lg font-bold text-sm tracking-wide hover:opacity-90 transition-all active:scale-95">
-            WhatsApp Karen
-          </a>
         </div>
+        
+        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="bg-warm-accent text-white px-6 py-3 rounded-lg font-bold text-sm tracking-wide hover:opacity-90 transition-all active:scale-95">
+          WhatsApp Karen
+        </a>
       </div>
-    </nav>
-  );
-};
+    </div>
+  </nav>
+);
 
 const Hero = () => (
   <section className="bg-warm-accent text-white py-20 md:py-32 relative overflow-hidden">
