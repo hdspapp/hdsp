@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 140" fill="none">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#C1440E"/>
+      <stop offset="100%" stop-color="#A0380B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Shield Icon -->
+  <g transform="translate(12, 12)">
+    <!-- Shield outer shape -->
+    <path d="M48 0C48 0 96 12 96 48C96 84 48 120 48 120C48 120 0 84 0 48C0 12 48 0 48 0Z"
+          fill="url(#shieldGrad)" opacity="0.12"/>
+    <path d="M48 4C48 4 92 15 92 48C92 81 48 114 48 114C48 114 4 81 4 48C4 15 48 4 48 4Z"
+          fill="url(#shieldGrad)" opacity="0.08"/>
+    <!-- Shield border -->
+    <path d="M48 0C48 0 96 12 96 48C96 84 48 120 48 120C48 120 0 84 0 48C0 12 48 0 48 0Z"
+          fill="none" stroke="#C1440E" stroke-width="3.5" stroke-linejoin="round" opacity="0.85"/>
+    <!-- Inner shield highlight -->
+    <path d="M48 6C48 6 88 17 88 48C88 77 48 108 48 108C48 108 8 77 8 48C8 17 48 6 48 6Z"
+          fill="none" stroke="#C1440E" stroke-width="0.8" opacity="0.15"/>
+
+    <!-- House shape inside shield -->
+    <g transform="translate(0, -2)">
+      <!-- Roof -->
+      <polygon points="48,22 28,42 68,42" fill="#C1440E"/>
+      <!-- House body -->
+      <rect x="32" y="42" width="32" height="30" rx="2" fill="#C1440E"/>
+      <!-- Door -->
+      <rect x="44" y="56" width="8" height="16" rx="1" fill="#F5ECD7" opacity="0.7"/>
+      <!-- Window left -->
+      <rect x="36" y="48" width="6" height="6" rx="1" fill="#F5ECD7" opacity="0.5"/>
+      <!-- Window right -->
+      <rect x="54" y="48" width="6" height="6" rx="1" fill="#F5ECD7" opacity="0.5"/>
+    </g>
+
+    <!-- Roof peak accent (sun/moon) -->
+    <circle cx="72" cy="32" r="5" fill="#F5ECD7" opacity="0.3"/>
+  </g>
+
+  <!-- HDSP Text -->
+  <text x="130" y="62" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="52" font-weight="700" letter-spacing="4" fill="#1a1a1a">
+    HDSP
+  </text>
+
+  <!-- Tagline -->
+  <text x="130" y="90" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="13" font-weight="500" letter-spacing="3.5" fill="#C1440E" opacity="0.85">
+    HOME DOMESTIC SERVICES PROVIDER
+  </text>
+
+  <!-- Separator line -->
+  <line x1="130" y1="73" x2="470" y2="73" stroke="#C1440E" stroke-width="1" opacity="0.15"/>
+</svg>

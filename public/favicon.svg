@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Shield with house - favicon size -->
+  <path d="M16 2C16 2 30 6 30 20C30 30 16 30 16 30C16 30 2 30 2 20C2 6 16 2 16 2Z"
+        fill="#C1440E"/>
+  <!-- House -->
+  <polygon points="16,10 10,16 22,16" fill="#F5ECD7"/>
+  <rect x="11" y="16" width="10" height="9" rx="1" fill="#F5ECD7"/>
+  <rect x="14" y="19" width="4" height="6" rx="0.5" fill="#C1440E"/>
+</svg>
