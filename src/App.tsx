@@ -22,7 +22,7 @@ const Navbar = () => (
         <div className="flex items-center gap-3">
           <div className="text-warm-accent flex items-center justify-start">
             <img
-              src="/logo.svg"
+              src="/logo.jpg"
               alt="HDSP Logo"
               className="w-full h-full object-contain object-left max-h-16"
             />
