@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="ur" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HDSP Urdu Registration Form</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Inter:wght@400;700&display=swap');
+
+      :root {
+        --warm-accent: #c1440e;
+        --deep-charcoal: #1a1a1a;
+        --bone: #f9f6f1;
+      }
+
+      body {
+        font-family: 'Inter', 'Noto Nastaliq Urdu', serif;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        color: var(--deep-charcoal);
+      }
+
+      .page {
+        width: 210mm;
+        height: 297mm;
+        padding: 10mm;
+        margin: 0 auto;
+        box-sizing: border-box;
+        border: 2px solid var(--warm-accent);
+        position: relative;
+        page-break-after: always;
+      }
+
+      .inner-border {
+        border: 0.5px solid var(--deep-charcoal);
+        height: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+
+      .header {
+        text-align: center;
+        border-bottom: 2px solid var(--warm-accent);
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+
+      .header h1 {
+        color: var(--warm-accent);
+        margin: 0;
+        font-size: 28pt;
+        font-family: 'Inter', sans-serif;
+      }
+
+      .header p {
+        margin: 5px 0;
+        font-size: 10pt;
+      }
+
+      .form-title {
+        background-color: var(--deep-charcoal);
+        color: white;
+        text-align: center;
+        padding: 10px;
+        font-size: 16pt;
+        font-weight: bold;
+        margin: 10px 0;
+        border-radius: 4px;
+      }
+
+      .section-title {
+        background-color: var(--warm-accent);
+        color: white;
+        padding: 5px 15px;
+        font-size: 12pt;
+        font-weight: bold;
+        margin: 20px 0 10px 0;
+        display: inline-block;
+        border-radius: 0 4px 4px 0;
+      }
+
+      .form-row {
+        display: flex;
+        margin-bottom: 12px;
+        gap: 20px;
+      }
+
+      .form-group {
+        flex: 1;
+        border-bottom: 1px dotted #888;
+        padding-bottom: 2px;
+        font-size: 11pt;
+      }
+
+      .form-group label {
+        font-weight: bold;
+        margin-left: 10px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+
+      th,
+      td {
+        border: 1px solid var(--deep-charcoal);
+        padding: 8px;
+        text-align: center;
+        font-size: 9pt;
+      }
+
+      th {
+        background-color: var(--warm-accent);
+        color: white;
+      }
+
+      .urdu-text {
+        font-family: 'Noto Nastaliq Urdu', serif;
+        line-height: 2.5;
+        text-align: justify;
+      }
+
+      .thumb-print {
+        display: flex;
+        gap: 5px;
+        margin-top: 20px;
+      }
+
+      .thumb-box {
+        width: 40px;
+        height: 50px;
+        border: 1px solid var(--deep-charcoal);
+      }
+
+      @page {
+        margin: 0;
+        size: A4;
+      }
+
+      @media print {
+        body {
+          background: none;
+        }
+        .page {
+          margin: 0;
+          border: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- FRONT PAGE -->
+    <div class="page">
+      <div class="inner-border">
+        <div class="header">
+          <h1>HDSP - HOME DOMESTIC SERVICES PROVIDER</h1>
+          <p>Professional Domestic Staffing Agency (Regd.)</p>
+          <p>
+            DHA Phase 6, Karachi. | Cell: 0335-8172235 | Website: www.hdsp.pk
+          </p>
+        </div>
+
+        <div class="form-title" style="font-family: 'Noto Nastaliq Urdu'">
+          ملازم کی رجسٹریشن کا فارم (EMPLOYEES REGISTRATION FORM)
+        </div>
+        <p style="text-align: center; font-size: 9pt">
+          رجسٹریشن فیس 500 روپے (ناقابل واپسی)
+        </p>
+
+        <div class="form-row">
+          <div class="form-group"><label>سیریل نمبر:</label> ________</div>
+          <div class="form-group"><label>ممبرشپ نمبر:</label> ________</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>نام (Mr/Mrs/Miss):</label>
+            ________________________________________________
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>والد / شوہر کا نام:</label>
+            _________________________________________________
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>شناختی کارڈ نمبر (CNIC):</label> _______________________
+          </div>
+          <div class="form-group"><label>عمر:</label> ________</div>
+          <div class="form-group"><label>تجربہ:</label> ________</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>موجودہ پتہ:</label>
+            _______________________________________________________
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>مستقل پتہ:</label>
+            _______________________________________________________
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>فون نمبر:</label> ________________________
+          </div>
+          <div class="form-group">
+            <label>متبادل فون:</label> ________________________
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>شادی شدہ / غیر شادی شدہ:</label> ________
+          </div>
+          <div class="form-group">
+            <label>زیر کفالت افراد کی تعداد:</label> ________
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>تعلیمی قابلیت:</label>
+            ____________________________________________________
+          </div>
+        </div>
+
+        <div class="section-title">
+          پیشہ ورانہ تجربہ (Occupational Experience)
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>عہدہ</th>
+              <th>ادارہ کا نام</th>
+              <th>مدت</th>
+              <th>تنخواہ</th>
+              <th>چھوڑنے کی وجہ</th>
+              <th>سرٹیفکیٹ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td height="30"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td height="30"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td height="30"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td height="30"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="form-row" style="margin-top: 20px">
+          <div class="form-group">
+            <label>کس اسامی کے لئے درخواست دی ہے:</label>
+            ________________________________
+          </div>
+        </div>
+
+        <div class="form-row" style="margin-top: 30px">
+          <div class="form-group"><label>تاریخ:</label> ____________</div>
+          <div class="form-group">
+            <label>درخواست گزار کے دستخط:</label> ________________
+          </div>
+        </div>
+
+        <p style="margin-top: 20px; font-weight: bold">
+          انگوٹھے کا نشان / فنگر پرنٹس:
+        </p>
+        <div class="thumb-print">
+          <div class="thumb-box"></div>
+          <div class="thumb-box"></div>
+          <div class="thumb-box"></div>
+          <div class="thumb-box"></div>
+          <div class="thumb-box"></div>
+          <div class="thumb-box"></div>
+          <div class="thumb-box"></div>
+          <div class="thumb-box"></div>
+          <div class="thumb-box"></div>
+          <div class="thumb-box"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK PAGE -->
+    <div class="page">
+      <div class="inner-border">
+        <div class="header">
+          <h1 style="font-family: 'Noto Nastaliq Urdu'">
+            کریکٹر سرٹیفکیٹ / تصدیق
+          </h1>
+          <p>(بذریعہ ایس ایچ او / متعلقہ تھانہ)</p>
+        </div>
+
+        <div class="section-title">ضامن نامہ (Guarantor - 1)</div>
+        <div class="urdu-text" style="font-size: 12pt; margin-top: 10px">
+          میں ضامن ہونے کی حیثیت سے امیدوار کو ایک عرصہ سے جانتا ہوں۔ اس کے
+          اخلاق اور چال چلن درست ہیں۔ اس کے بجائے رہائشی کو جانتا ہوں، اس کی
+          غفلت کوتاہی یا نقصان کی صورت میں، میں اس کی پوری ذمہ داری لیتا ہوں۔
+        </div>
+
+        <div class="form-row" style="margin-top: 15px">
+          <div class="form-group">
+            <label>نام ضامن:</label> ____________________
+          </div>
+          <div class="form-group">
+            <label>فون نمبر:</label> ____________________
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>شناختی کارڈ نمبر:</label> ____________________
+          </div>
+          <div class="form-group">
+            <label>دستخط:</label> ____________________
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>مکمل پتہ:</label>
+            _________________________________________________________
+          </div>
+        </div>
+
+        <div class="section-title">ضامن نامہ (Guarantor - 2)</div>
+        <div class="urdu-text" style="font-size: 12pt; margin-top: 10px">
+          میں ضامن ہونے کی حیثیت سے امیدوار کو ایک عرصہ سے جانتا ہوں۔ اس کے
+          اخلاق اور چال چلن درست ہیں۔ میں اس کے کردار اور اعمال کی مکمل ضمانت
+          دیتا ہوں۔
+        </div>
+
+        <div class="form-row" style="margin-top: 15px">
+          <div class="form-group">
+            <label>نام ضامن:</label> ____________________
+          </div>
+          <div class="form-group">
+            <label>فون نمبر:</label> ____________________
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>شناختی کارڈ نمبر:</label> ____________________
+          </div>
+          <div class="form-group">
+            <label>دستخط:</label> ____________________
+          </div>
+        </div>
+
+        <div
+          class="form-title"
+          style="margin-top: 30px; font-family: 'Noto Nastaliq Urdu'"
+        >
+          ملازم کا عہد (Employee Oath)
+        </div>
+        <div class="urdu-text" style="font-size: 11pt">
+          میں حلفاً اقرار کرتا ہوں کہ میں اپنے فرائض نہایت ایمانداری اور
+          جانفشانی سے انجام دوں گا۔ میں ادارے کے تمام قوانین کی پاسداری کروں گا
+          اور کسی بھی غیر قانونی سرگرمی میں ملوث نہیں ہوں گا۔ کسی بھی غلطی یا
+          کوتاہی کی صورت میں ادارہ میرے خلاف کارروائی کا حق رکھتا ہے۔
+        </div>
+
+        <div class="section-title">اہم ہدایات</div>
+        <div class="urdu-text" style="font-size: 10pt; line-height: 1.8">
+          * شناختی کارڈ کی دو عدد فوٹو کاپی، تعلیمی اسناد اور تجربہ کے سرٹیفکیٹ
+          منسلک کریں۔<br />
+          * تمام رجسٹریشن کے عمل میں کم از کم 15 دن لگ سکتے ہیں۔<br />
+          * ملازمت "پہلے آئیے پہلے پائیے" کی بنیاد پر دی جاتی ہے۔<br />
+          * نامکمل فارم یا ضروری دستاویزات کے بغیر فارم قبول نہیں کیا جائے
+          گا۔<br />
+          * ادارہ کسی بھی فارم کو بغیر وجہ بتائے مسترد کرنے کا حق رکھتا ہے۔
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
