@@ -24,7 +24,7 @@ const Navbar = () => (
             <img
               src="/logo.jpg"
               alt="HDSP Logo"
-              className="w-full h-full object-contain object-left max-h-16"
+              className="h-14 w-auto object-contain object-left"
             />
           </div>
         </div>
