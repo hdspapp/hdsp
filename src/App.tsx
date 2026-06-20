@@ -170,6 +170,14 @@ const PainPoints = () => {
   );
 };
 
+const serviceImages = [
+  '/images/maid-cleaning.jpg',
+  '/images/chef-cooking.jpg',
+  '/images/nanny-toddlers.jpg',
+  '/images/driver-car.jpg',
+  '/images/patient-care.jpg',
+];
+
 const Services = () => {
   const items = [
     {
@@ -213,14 +221,33 @@ const Services = () => {
           {items.map((it, idx) => (
             <motion.div
               key={idx}
-              whileHover={{ y: -6 }}
-              className="p-8 bg-bone rounded-2xl text-center group cursor-default shadow-sm hover:shadow-xl transition-all"
+              whileHover={{ y: -8 }}
+              className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all cursor-default"
             >
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 text-warm-accent group-hover:bg-warm-accent group-hover:text-white transition-all shadow-inner">
-                {it.icon}
+              {/* Background image */}
+              <div className="absolute inset-0">
+                <img
+                  src={serviceImages[idx]}
+                  alt={it.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
               </div>
-              <h3 className="text-xl font-bold mb-3">{it.title}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">{it.desc}</p>
+
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10 group-hover:from-black/75 transition-colors" />
+
+              {/* Content */}
+              <div className="relative z-10 p-8 pt-48 flex flex-col items-center text-center min-h-[360px] justify-end">
+                <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mb-6 text-white group-hover:bg-warm-accent group-hover:scale-110 transition-all">
+                  {it.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-white drop-shadow-sm">
+                  {it.title}
+                </h3>
+                <p className="text-sm text-white/80 leading-relaxed drop-shadow-sm">
+                  {it.desc}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
