@@ -6,6 +6,7 @@ const navLinks = [
   { to: '/maid-service', label: 'Maid Service' },
   { to: '/babysitting-service', label: 'Babysitting' },
   { to: '/home-cook-service', label: 'Home Cook' },
+  { to: '/driver-service', label: 'Driver' },
 ];
 
 export default function Navbar() {

@@ -18,4 +18,4 @@ export const AREAS_SERVED = [
 
 export const COMPANY_NAME = 'HDSP — Home Domestic Services Provider';
 export const COMPANY_DESCRIPTION =
-  "Karachi's most trusted domestic staffing agency. NADRA-verified maids, chefs, nannies, drivers & patient care staff.";
+  "Karachi's most trusted domestic staffing agency. NADRA-verified maids, chefs, nannies & drivers.";

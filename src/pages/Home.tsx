@@ -5,7 +5,6 @@ import {
   ChefHat,
   Baby,
   Car,
-  HeartPulse,
 } from 'lucide-react';
 import { WHATSAPP_LINK, PHONE_NUMBER } from '../data/constants';
 import TrustBar from '../components/TrustBar';
@@ -118,7 +117,6 @@ const serviceImages = [
   '/images/chef-cooking.jpg',
   '/images/nanny-toddlers.jpg',
   '/images/driver-car.jpg',
-  '/images/patient-care.jpg',
 ];
 
 const Services = () => {
@@ -143,11 +141,6 @@ const Services = () => {
       title: 'Drivers',
       desc: 'Licensed, verified drivers for family use',
     },
-    {
-      icon: <HeartPulse className="w-8 h-8" />,
-      title: 'Patient Care',
-      desc: 'Trained attendants for elderly & post-surgery care',
-    },
   ];
 
   return (
@@ -160,7 +153,7 @@ const Services = () => {
           <div className="w-24 h-1 bg-warm-accent mx-auto rounded-full" />
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {items.map((it, idx) => (
             <motion.div
               key={idx}
@@ -255,7 +248,7 @@ const Testimonials = () => (
           {
             name: 'Samina R.',
             loc: 'Clifton',
-            text: "Found an amazing patient care attendant for my father. She's so professional that my father now asks for her by name every morning.",
+            text: "HDSP sent us a wonderful maid who completely transformed our household. She's thorough, punctual, and my family is finally stress-free about home cleaning.",
           },
           {
             name: 'Ayesha K.',
@@ -266,6 +259,21 @@ const Testimonials = () => (
             name: 'Farhan M.',
             loc: 'DHA Phase 8',
             text: "Returned from Dubai and was worried about local staffing. HDSP's process and accountability is exactly what Karachi needed.",
+          },
+          {
+            name: 'Zainab T.',
+            loc: 'Gulshan-e-Iqbal',
+            text: 'The cook HDSP placed with us makes the best homemade food. She adapts to our taste preferences and maintains excellent kitchen hygiene. Highly recommended.',
+          },
+          {
+            name: 'Rizwan A.',
+            loc: 'PECHS',
+            text: 'Hired a driver through HDSP and the verification process was incredibly thorough. GPS tracking and family-friendly driving — exactly what we needed.',
+          },
+          {
+            name: 'Fatima S.',
+            loc: 'North Nazimabad',
+            text: "The nanny HDSP arranged for our toddler is amazing with kids. She's patient, well-trained, and we feel completely at ease leaving our son in her care.",
           },
         ].map((t, i) => (
           <div
