@@ -1,39 +1,42 @@
-export const WHATSAPP_NUMBER = '923358172235';
-export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello%20HDSP%2C%20I%20am%20interested%20in%20your%20domestic%20staff%20services`;
-export const PHONE_NUMBER = '0335-8172235';
+# Area Landing Pages + Lighthouse Fixes — Implementation Plan
 
-export const AREAS_SERVED = [
-  'DHA',
-  'Clifton',
-  'Gulshan-e-Iqbal',
-  'PECHS',
-  'North Nazimabad',
-  'Gulistan-e-Jauhar',
-  'Defence',
-  'Bahadurabad',
-  'Saddar',
-  'Malir',
-  'Korangi',
-] as const;
+> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-export const COMPANY_NAME = 'HDSP — Home Domestic Services Provider';
-export const COMPANY_DESCRIPTION =
-  "Karachi's most trusted domestic staffing agency. NADRA-verified maids, chefs, nannies & drivers.";
+**Goal:** Build 3 localized area landing pages (DHA, Clifton, Gulshan) with all 4 services per page, and fix pre-existing Lighthouse issues (heading hierarchy, color contrast).
 
+**Architecture:** Single `AreaLanding.tsx` component parameterized by URL slug (`/area/:areaSlug`), driven by `AREA_DETAILS` data map in constants. Lighthouse fixes are CSS-only changes in `index.css` and heading level tweaks in `Home.tsx`.
+
+**Tech Stack:** React 19, Vite 6, Tailwind CSS v4, react-router-dom v7, motion (framer-motion), lucide-react
+
+---
+
+## Task 1: Add AREA_DETAILS data + useSEO hook
+
+**Files:**
+
+- Modify: `src/data/constants.ts` — add `AREA_DETAILS` map
+- Create: `src/hooks/useSEO.ts` — shared SEO hook
+- Modify: `src/data/schema.ts` — add `generateAreaSchema()`
+
+### Step 1: Add AREA_DETAILS to constants.ts
+
+Append after `AREAS_SERVED`:
+
+```typescript
 export const AREA_DETAILS = {
   dha: {
     name: 'DHA',
     fullName: 'DHA (Defence Housing Authority)',
     slug: 'dha',
     subLocalities: [
-      'Phase 1',
       'Phase 2',
-      'Phase 3',
       'Phase 4',
-      'Phase 5',
       'Phase 6',
-      'Phase 7',
       'Phase 8',
+      'Phase 1',
+      'Phase 3',
+      'Phase 5',
+      'Phase 7',
       'DHA City',
     ],
     landmarks: [
@@ -229,3 +232,170 @@ export const AREA_DETAILS = {
 } as const;
 
 export type AreaSlug = keyof typeof AREA_DETAILS;
+```
+
+### Step 2: Create useSEO hook
+
+Create `src/hooks/useSEO.ts`:
+
+```typescript
+import { useEffect } from 'react';
+
+interface SEOProps {
+  title: string;
+  description: string;
+  canonical?: string;
+}
+
+export default function useSEO({ title, description, canonical }: SEOProps) {
+  useEffect(() => {
+    document.title = title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', description);
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = description;
+      document.head.appendChild(meta);
+    }
+    if (canonical) {
+      let link = document.querySelector('link[rel="canonical"]');
+      if (!link) {
+        link = document.createElement('link');
+        link.setAttribute('rel', 'canonical');
+        document.head.appendChild(link);
+      }
+      link.setAttribute('href', canonical);
+    }
+  }, [title, description, canonical]);
+}
+```
+
+### Step 3: Add generateAreaSchema to schema.ts
+
+Add after `generateServiceSchema`:
+
+```typescript
+interface AreaSchemaProps {
+  areaName: string;
+  areaDescription: string;
+  areaSlug: string;
+}
+
+export function generateAreaSchema({
+  areaName,
+  areaDescription,
+  areaSlug,
+}: AreaSchemaProps) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': ['LocalBusiness', 'Service'],
+    name: `Domestic Staff in ${areaName}, Karachi — ${COMPANY_NAME}`,
+    description: areaDescription,
+    url: `https://hdsp.pk/area/${areaSlug}`,
+    telephone: PHONE_NUMBER,
+    areaServed: [{ '@type': 'City', name: `${areaName}, Karachi` }],
+    provider: {
+      '@type': 'LocalBusiness',
+      name: COMPANY_NAME,
+      telephone: PHONE_NUMBER,
+    },
+  };
+}
+```
+
+---
+
+## Task 2: Create AreaLanding.tsx
+
+**Files:**
+
+- Create: `src/pages/AreaLanding.tsx`
+
+Single parameterized component following the 9-section service page template. Uses `useSEO`, `AREA_DETAILS`, `generateAreaSchema`, WhatsApp CTAs.
+
+### Step 1: Write AreaLanding.tsx
+
+Reads `areaSlug` from `useParams()`, looks up `AREA_DETAILS[areaSlug]`, renders all sections. Falls back to `<Navigate to="/" />` for invalid slugs.
+
+Sections: Hero → TrustBar → WhyThisArea → Services → HiringOptions → SubLocalities → FAQ → Testimonials → Guarantee → FinalCTA
+
+### Step 2: TypeScript check
+
+Run: `npm run lint` — should pass
+
+---
+
+## Task 3: Add routes + Navbar links
+
+**Files:**
+
+- Modify: `src/App.tsx` — add `/area/:areaSlug` route
+- Modify: `src/components/Navbar.tsx` — add "Areas" dropdown or links
+
+### Step 1: App.tsx
+
+Add import and route after existing service routes:
+
+```typescript
+import AreaLanding from './pages/AreaLanding';
+// ...
+<Route path="/area/:areaSlug" element={<AreaLanding />} />
+```
+
+### Step 2: Navbar.tsx
+
+Add 3 area links — DHA, Clifton, Gulshan. As a dropdown under "Areas" or as separate nav items.
+
+---
+
+## Task 4: Lighthouse fixes
+
+**Files:**
+
+- Modify: `src/index.css` — color contrast fixes
+- Modify: `src/pages/Home.tsx` — heading hierarchy fix
+
+### Step 1: Fix heading hierarchy in Home.tsx
+
+- Pain point section titles (currently `h4`): change to `h3` — h1→h2→h3 (fixes skipped heading level)
+- Verification step labels (currently `h4` under `h2`): change to `h3`
+
+### Step 2: Fix color contrast in index.css
+
+- `text-deep-charcoal/90` on headings → change to `text-deep-charcoal` (solid)
+- Verify `warm-accent (#C1440E)` contrast on common backgrounds
+- If needed, darken warm-accent for better WCAG AA compliance
+
+---
+
+## Task 5: Build, verify, deploy
+
+### Step 1: Build
+
+Run: `npm run build`
+Expected: exit code 0, dist/ includes 404.html
+
+### Step 2: TypeScript check
+
+Run: `npm run lint`
+Expected: exit code 0
+
+### Step 3: Commit & push to main
+
+```bash
+git add -A
+git commit -m "feat: add area landing pages (DHA, Clifton, Gulshan) + Lighthouse fixes"
+git push origin main
+```
+
+### Step 4: Verify live site
+
+Wait for GitHub Actions deploy to complete, then verify:
+
+- `https://hdsp.pk/area/dha` — all sections render
+- `https://hdsp.pk/area/clifton` — all sections render
+- `https://hdsp.pk/area/gulshan` — all sections render
+- `https://hdsp.pk/area/invalid` — redirects to /
+- `https://hdsp.pk/` — heading hierarchy fixed, contrast improved

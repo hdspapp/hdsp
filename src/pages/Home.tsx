@@ -95,9 +95,9 @@ const PainPoints = () => {
               className="bg-white p-8 rounded-xl border-l-4 border-warm-accent shadow-sm"
             >
               <span className="text-4xl mb-6 block">{p.emoji}</span>
-              <h4 className="text-xl font-bold mb-4 text-deep-charcoal">
+              <h3 className="text-xl font-bold mb-4 text-deep-charcoal">
                 &ldquo;{p.problem}&rdquo;
-              </h4>
+              </h3>
               <p className="text-gray-600 leading-relaxed italic">
                 <span className="text-warm-accent font-bold not-italic">
                   HDSP Resolution:
@@ -224,9 +224,9 @@ const Verification = () => (
             <span className="text-7xl font-bold text-white/5 absolute -top-8 left-4">
               {step.n}
             </span>
-            <h4 className="text-xl font-bold mb-4 relative z-10 text-warm-accent">
+            <h3 className="text-xl font-bold mb-4 relative z-10 text-warm-accent">
               {step.t}
-            </h4>
+            </h3>
             <p className="text-white/60 text-sm leading-relaxed relative z-10">
               {step.d}
             </p>

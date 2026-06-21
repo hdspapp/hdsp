@@ -26,6 +26,33 @@ export function generateLocalBusinessSchema() {
   };
 }
 
+interface AreaSchemaProps {
+  areaName: string;
+  areaDescription: string;
+  areaSlug: string;
+}
+
+export function generateAreaSchema({
+  areaName,
+  areaDescription,
+  areaSlug,
+}: AreaSchemaProps) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': ['LocalBusiness', 'Service'],
+    name: `Domestic Staff in ${areaName}, Karachi — ${COMPANY_NAME}`,
+    description: areaDescription,
+    url: `https://hdsp.pk/area/${areaSlug}`,
+    telephone: PHONE_NUMBER,
+    areaServed: [{ '@type': 'City', name: `${areaName}, Karachi` }],
+    provider: {
+      '@type': 'LocalBusiness',
+      name: COMPANY_NAME,
+      telephone: PHONE_NUMBER,
+    },
+  };
+}
+
 export function generateServiceSchema({
   serviceName,
   serviceDescription,
