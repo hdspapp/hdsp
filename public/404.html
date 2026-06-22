@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ur">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HDSP — Home Domestic Services Provider</title>
+    <script>
+      // SPA redirect for GitHub Pages — captures the intended path
+      // and passes it to index.html via sessionStorage
+      var path = location.pathname + location.search + location.hash;
+      if (path !== '/') {
+        sessionStorage.setItem('redirect', path);
+      }
+      location.replace('/');
+    </script>
+  </head>
+  <body></body>
+</html>
