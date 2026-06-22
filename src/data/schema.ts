@@ -1,5 +1,22 @@
 import { COMPANY_NAME, PHONE_NUMBER, AREAS_SERVED } from './constants';
 
+interface FAQItem {
+  q: string;
+  a: string;
+}
+
+export function generateFAQSchema(faq: readonly FAQItem[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  };
+}
+
 interface ServicePageSchema {
   serviceName: string;
   serviceDescription: string;

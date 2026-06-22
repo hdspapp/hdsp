@@ -16,7 +16,7 @@ export default function FloatingWA() {
       <div className="absolute inset-0 bg-[#25d366] rounded-full blur-xl opacity-40 animate-pulse group-hover:scale-125 transition-transform" />
       <div className="relative w-16 h-16 bg-[#25d366] rounded-full flex items-center justify-center text-white shadow-2xl shadow-green-500/40">
         <MessageCircle className="w-8 h-8" />
-        <span className="absolute right-full mr-4 bg-white text-deep-charcoal px-3 py-1 rounded-lg text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+        <span className="absolute right-full mr-4 bg-white text-primary px-3 py-1 rounded-lg text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
           Chat with HDSP
         </span>
       </div>

@@ -12,7 +12,7 @@ import AreaLanding from './pages/AreaLanding';
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen font-sans text-deep-charcoal selection:bg-warm-accent/20">
+      <div className="min-h-screen font-sans text-primary selection:bg-accent/20">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />

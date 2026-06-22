@@ -40,8 +40,8 @@ export default function Navbar() {
                 to={link.to}
                 className={`text-sm font-medium transition-colors ${
                   location.pathname === link.to
-                    ? 'text-warm-accent'
-                    : 'text-gray-600 hover:text-deep-charcoal'
+                    ? 'text-accent'
+                    : 'text-gray-600 hover:text-primary'
                 }`}
               >
                 {link.label}
@@ -52,8 +52,8 @@ export default function Navbar() {
               <button
                 className={`text-sm font-medium transition-colors flex items-center gap-1 ${
                   isAreaActive
-                    ? 'text-warm-accent'
-                    : 'text-gray-600 hover:text-deep-charcoal'
+                    ? 'text-accent'
+                    : 'text-gray-600 hover:text-primary'
                 }`}
               >
                 Areas
@@ -78,8 +78,8 @@ export default function Navbar() {
                     to={link.to}
                     className={`block px-5 py-3 text-sm font-medium transition-colors first:rounded-t-xl last:rounded-b-xl ${
                       location.pathname === link.to
-                        ? 'text-warm-accent bg-warm-accent/5'
-                        : 'text-gray-600 hover:text-deep-charcoal hover:bg-gray-50'
+                        ? 'text-accent bg-accent/5'
+                        : 'text-gray-600 hover:text-primary hover:bg-gray-50'
                     }`}
                   >
                     {link.label}
@@ -93,7 +93,7 @@ export default function Navbar() {
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-warm-accent text-white px-6 py-3 rounded-lg font-bold text-sm tracking-wide hover:opacity-90 transition-all active:scale-95"
+            className="bg-accent text-white px-6 py-3 rounded-lg font-bold text-sm tracking-wide hover:opacity-90 transition-all active:scale-95"
           >
             WhatsApp Karen
           </a>

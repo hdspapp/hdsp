@@ -1,25 +1,17 @@
 import { useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import {
-  MessageCircle,
-  Clock,
-  MapPin,
-  Home,
-  ChefHat,
-  Baby,
-  Car,
-  Shield,
-} from 'lucide-react';
-import {
-  WHATSAPP_LINK,
-  PHONE_NUMBER,
-  AREA_DETAILS,
-  type AreaSlug,
-} from '../data/constants';
-import { generateAreaSchema } from '../data/schema';
+import { MapPin, Home, Baby, ChefHat, Car, Clock } from 'lucide-react';
+import { WHATSAPP_LINK, AREA_DETAILS, type AreaSlug } from '../data/constants';
+import { generateAreaSchema, generateFAQSchema } from '../data/schema';
 import useSEO from '../hooks/useSEO';
 import TrustBar from '../components/TrustBar';
+import BentoGrid from '../components/sections/BentoGrid';
+import CardGrid from '../components/sections/CardGrid';
+import FAQ from '../components/sections/FAQ';
+import Testimonials from '../components/sections/Testimonials';
+import Guarantee from '../components/sections/Guarantee';
+import FinalCTA from '../components/sections/FinalCTA';
 
 const servicesList = [
   {
@@ -62,24 +54,12 @@ const hiringOptions = [
   },
 ];
 
-function generateFAQSchema(faq: readonly { q: string; a: string }[]) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faq.map((item) => ({
-      '@type': 'Question',
-      name: item.q,
-      acceptedAnswer: { '@type': 'Answer', text: item.a },
-    })),
-  };
-}
-
 interface AreaPageProps {
   data: (typeof AREA_DETAILS)[AreaSlug];
 }
 
 const Hero = ({ data }: AreaPageProps) => (
-  <section className="bg-warm-accent text-white py-20 md:py-32 relative overflow-hidden">
+  <section className="bg-accent text-white py-20 md:py-32 relative overflow-hidden">
     <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -mr-48 -mt-48 blur-3xl animate-pulse" />
     <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/5 rounded-full -ml-32 -mb-32 blur-2xl" />
     <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
@@ -104,7 +84,7 @@ const Hero = ({ data }: AreaPageProps) => (
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href={WHATSAPP_LINK}
-            className="bg-cloud-dancer text-warm-accent px-8 py-5 rounded-lg font-bold text-lg shadow-xl hover:bg-white transition-all transform active:scale-95"
+            className="bg-surface text-accent px-8 py-5 rounded-lg font-bold text-lg shadow-xl hover:bg-white transition-all transform active:scale-95"
           >
             Abhi WhatsApp Karen
           </a>
@@ -115,9 +95,9 @@ const Hero = ({ data }: AreaPageProps) => (
 );
 
 const WhySection = ({ data }: AreaPageProps) => (
-  <section className="py-20 bg-bone">
+  <section className="py-20 bg-surface">
     <div className="max-w-4xl mx-auto px-4 text-center">
-      <h2 className="text-3xl md:text-4xl font-serif font-bold text-deep-charcoal mb-8">
+      <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-8">
         Why HDSP in {data.name}?
       </h2>
       <p className="text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto">
@@ -128,7 +108,7 @@ const WhySection = ({ data }: AreaPageProps) => (
           {data.landmarks.map((lm) => (
             <span
               key={lm}
-              className="bg-white px-4 py-2 rounded-full text-sm font-medium text-warm-accent shadow-sm border border-linen/50"
+              className="bg-white px-4 py-2 rounded-full text-sm font-medium text-accent shadow-sm border border-border/50"
             >
               {lm}
             </span>
@@ -139,81 +119,11 @@ const WhySection = ({ data }: AreaPageProps) => (
   </section>
 );
 
-const Services = ({ data }: AreaPageProps) => (
-  <section className="py-20">
-    <div className="max-w-7xl mx-auto px-4">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-5xl font-serif font-bold text-deep-charcoal mb-4">
-          All Services in {data.name}
-        </h2>
-        <div className="w-24 h-1 bg-warm-accent mx-auto rounded-full" />
-      </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {servicesList.map((svc, idx) => {
-          const Icon = svc.icon;
-          return (
-            <motion.div
-              key={idx}
-              whileHover={{ y: -8 }}
-              className="bento-card text-center group"
-            >
-              <div className="w-16 h-16 bg-warm-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-warm-accent group-hover:bg-warm-accent group-hover:text-white transition-all">
-                <Icon className="w-8 h-8" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-deep-charcoal">
-                {svc.title}
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                {svc.desc}
-              </p>
-            </motion.div>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-);
-
-const HiringOptions = () => (
-  <section className="py-20 bg-bone">
-    <div className="max-w-7xl mx-auto px-4">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-5xl font-serif font-bold text-deep-charcoal mb-4">
-          Choose Your Hiring Option
-        </h2>
-        <div className="w-24 h-1 bg-warm-accent mx-auto rounded-full" />
-      </div>
-      <div className="grid md:grid-cols-3 gap-8">
-        {hiringOptions.map((opt, idx) => {
-          const Icon = opt.icon;
-          return (
-            <motion.div
-              key={idx}
-              whileHover={{ y: -5 }}
-              className="bg-white p-8 rounded-2xl shadow-sm text-center"
-            >
-              <div className="w-14 h-14 bg-warm-accent/10 rounded-full flex items-center justify-center mx-auto mb-6 text-warm-accent">
-                <Icon className="w-7 h-7" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-deep-charcoal">
-                {opt.title}
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                {opt.desc}
-              </p>
-            </motion.div>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-);
-
 const SubLocalities = ({ data }: AreaPageProps) => (
   <section className="py-20">
     <div className="max-w-7xl mx-auto px-4">
       <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-serif font-bold text-deep-charcoal mb-4">
+        <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4">
           Areas We Cover in {data.name}
         </h2>
         <p className="text-gray-500 max-w-xl mx-auto">
@@ -225,112 +135,12 @@ const SubLocalities = ({ data }: AreaPageProps) => (
         {data.subLocalities.map((loc) => (
           <span
             key={loc}
-            className="bg-white px-5 py-3 rounded-xl text-sm font-medium text-deep-charcoal shadow-sm border border-linen/50 hover:border-warm-accent/30 hover:text-warm-accent transition-colors"
+            className="bg-white px-5 py-3 rounded-xl text-sm font-medium text-primary shadow-sm border border-border/50 hover:border-accent/30 hover:text-accent transition-colors"
           >
             {data.name} {loc}
           </span>
         ))}
       </div>
-    </div>
-  </section>
-);
-
-const FAQ = ({ data }: AreaPageProps) => (
-  <section className="py-20 bg-bone">
-    <div className="max-w-3xl mx-auto px-4">
-      <h2 className="text-3xl md:text-4xl font-serif font-bold text-center text-deep-charcoal mb-16">
-        Frequently Asked Questions
-      </h2>
-      <div className="space-y-4">
-        {data.faq.map((item, idx) => (
-          <details
-            key={idx}
-            className="bg-white rounded-xl shadow-sm group open:shadow-md transition-shadow"
-          >
-            <summary className="px-6 py-5 font-bold text-deep-charcoal cursor-pointer flex items-center justify-between list-none">
-              <span>{item.q}</span>
-              <span className="text-warm-accent text-2xl group-open:rotate-45 transition-transform">
-                +
-              </span>
-            </summary>
-            <div className="px-6 pb-5 text-gray-500 leading-relaxed">
-              {item.a}
-            </div>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-const Testimonials = ({ data }: AreaPageProps) => (
-  <section className="py-24">
-    <div className="max-w-7xl mx-auto px-4">
-      <h2 className="text-3xl md:text-5xl font-serif font-bold text-center mb-16">
-        What Families in {data.name} Say
-      </h2>
-      <div className="grid md:grid-cols-3 gap-8">
-        {data.testimonials.map((t, i) => (
-          <div
-            key={i}
-            className="bg-white p-8 rounded-2xl shadow-sm italic text-gray-600 relative"
-          >
-            <div className="w-12 h-12 bg-cloud-dancer rounded-full flex items-center justify-center font-bold text-warm-accent mb-6">
-              {t.name[0]}
-            </div>
-            <p className="mb-6 leading-relaxed">&ldquo;{t.text}&rdquo;</p>
-            <div className="not-italic">
-              <p className="font-bold text-deep-charcoal">{t.name}</p>
-              <p className="text-xs text-warm-accent font-bold uppercase tracking-widest">
-                {t.loc}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-const Guarantee = () => (
-  <section className="bg-warm-accent py-20 text-white text-center relative overflow-hidden">
-    <div className="max-w-4xl mx-auto px-4 relative z-10">
-      <h2 className="text-3xl md:text-6xl font-serif font-bold mb-6">
-        30-Din Mein Satisfy Nahi? <br />
-        Hum Replace Karenge.
-      </h2>
-      <p className="text-xl opacity-90 mb-10 italic">
-        Koi sawaal nahi. Koi argument nahi. <br className="hidden md:block" />
-        Free replacement within 30 days — guaranteed.
-      </p>
-      <a
-        href={WHATSAPP_LINK}
-        className="inline-block bg-white text-warm-accent px-10 py-5 rounded-lg font-bold text-lg hover:bg-cloud-dancer transition-all transform active:scale-95 shadow-xl"
-      >
-        Guarantee Ke Baare Mein Janein
-      </a>
-    </div>
-  </section>
-);
-
-const FinalCTA = () => (
-  <section className="py-24 bg-white text-center">
-    <div className="max-w-3xl mx-auto px-4">
-      <h2 className="text-4xl md:text-5xl font-serif font-bold text-deep-charcoal mb-6">
-        Need Verified Staff in Your Area?
-      </h2>
-      <p className="text-xl text-gray-500 mb-12">
-        Aaj hi WhatsApp karein. 24 ghante mein placement.{' '}
-        <br className="hidden md:block" />
-        Har staff member CNIC verified, police cleared, aur trained hai.
-      </p>
-      <a
-        href={WHATSAPP_LINK}
-        className="inline-flex items-center gap-4 bg-[#25d366] text-white px-10 py-6 rounded-xl font-bold text-xl hover:opacity-90 transition-all shadow-2xl hover:shadow-green-500/20 active:scale-95"
-      >
-        <MessageCircle className="w-8 h-8" />
-        WhatsApp Karen — {PHONE_NUMBER}
-      </a>
     </div>
   </section>
 );
@@ -382,13 +192,29 @@ export default function AreaLanding() {
       <Hero data={data} />
       <TrustBar />
       <WhySection data={data} />
-      <Services data={data} />
-      <HiringOptions />
+      <BentoGrid
+        title={`All Services in ${data.name}`}
+        items={servicesList}
+        columns={4}
+      />
+      <CardGrid
+        title="Choose Your Hiring Option"
+        items={hiringOptions}
+        columns={3}
+        bgColor="bone"
+      />
       <SubLocalities data={data} />
-      <FAQ data={data} />
-      <Testimonials data={data} />
+      <FAQ title="Frequently Asked Questions" items={data.faq} bgColor="bone" />
+      <Testimonials
+        title={`What Families in ${data.name} Say`}
+        items={data.testimonials}
+        columns={3}
+      />
       <Guarantee />
-      <FinalCTA />
+      <FinalCTA
+        title="Need Verified Staff in Your Area?"
+        subtitle="Aaj hi WhatsApp karein. 24 ghante mein placement. Har staff member CNIC verified, police cleared, aur trained hai."
+      />
     </main>
   );
 }

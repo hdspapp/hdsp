@@ -6,37 +6,37 @@
   --font-display: 'Space Grotesk', sans-serif;
   --font-serif: 'Playfair Display', serif;
 
-  --color-cloud-dancer: #f5ecd7; /* Brand Cream */
-  --color-bone: #f9f6f1; /* Light Background */
-  --color-warm-accent: #c1440e; /* Brand Terracotta */
-  --color-deep-charcoal: #1a1a1a; /* Brand Dark */
-  --color-soft-clay: #a0380b;
-  --color-linen: #e8dcc0;
+  --color-primary: #0a2850; /* Navy — headings, brand text */
+  --color-primary-light: #163053; /* Navy light — hover states */
+  --color-accent: #549930; /* Green — CTAs, icons, highlights */
+  --color-accent-light: #6aa23f; /* Green light — hover */
+  --color-surface: #f5f7f8; /* Light cool gray — alt backgrounds */
+  --color-border: #bdcdd0; /* Light gray — borders, dividers */
 }
 
 @layer base {
   body {
-    @apply bg-cloud-dancer text-deep-charcoal font-sans antialiased selection:bg-warm-accent selection:text-white;
+    @apply bg-white text-primary font-sans antialiased selection:bg-accent selection:text-white;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    @apply font-display font-bold tracking-tight text-deep-charcoal;
+    @apply font-display font-bold tracking-tight text-primary;
   }
 }
 
 .bento-card {
-  @apply bg-bone/80 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-sm transition-all duration-300 hover:shadow-xl hover:bg-bone;
+  @apply bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-border/20 shadow-sm transition-all duration-300 hover:shadow-xl hover:bg-white;
 }
 
 .glass-nav {
-  @apply sticky top-0 z-50 bg-cloud-dancer/90 backdrop-blur-lg border-b border-linen/30;
+  @apply sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-border/20;
 }
 
 .btn-primary {
-  @apply bg-warm-accent text-white px-8 py-3 rounded-full font-medium transition-all hover:scale-105 active:scale-95 shadow-lg shadow-warm-accent/20;
+  @apply bg-accent text-white px-8 py-3 rounded-full font-medium transition-all hover:scale-105 active:scale-95 shadow-lg shadow-accent/20;
 }
 
 .btn-whatsapp {
