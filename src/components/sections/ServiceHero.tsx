@@ -30,7 +30,7 @@ export default function ServiceHero({
             ✦ {badge}
           </span>
           <h1
-            className="text-4xl md:text-7xl font-serif font-bold mb-6 leading-[1.1]"
+            className="text-4xl md:text-7xl font-serif font-bold mb-6 leading-[1.1] text-white"
             dangerouslySetInnerHTML={{ __html: headline }}
           />
           <p className="text-lg md:text-xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed">

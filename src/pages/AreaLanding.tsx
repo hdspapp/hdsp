@@ -71,7 +71,7 @@ const Hero = ({ data }: AreaPageProps) => (
         <span className="inline-block bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm font-semibold mb-8 tracking-wide">
           ✦ {data.name} — Trusted Domestic Staff
         </span>
-        <h1 className="text-4xl md:text-6xl font-serif font-bold mb-8 leading-[1.1] max-w-4xl mx-auto">
+        <h1 className="text-4xl md:text-6xl font-serif font-bold mb-8 leading-[1.1] max-w-4xl mx-auto text-white">
           {data.heroHeadline}
         </h1>
         <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">

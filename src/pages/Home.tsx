@@ -23,7 +23,7 @@ const Hero = () => (
         <span className="inline-block bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm font-semibold mb-8 tracking-wide">
           ✦ Karachi's Most Trusted Domestic Staff Agency
         </span>
-        <h1 className="text-4xl md:text-7xl font-serif font-bold mb-8 leading-[1.1] max-w-4xl mx-auto">
+        <h1 className="text-4xl md:text-7xl font-serif font-bold mb-8 leading-[1.1] max-w-4xl mx-auto text-white">
           Verified. Trained. Reliable. <br />
           Domestic Staff for Your Home.
         </h1>
