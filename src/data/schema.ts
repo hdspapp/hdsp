@@ -1,4 +1,10 @@
-import { COMPANY_NAME, PHONE_NUMBER, AREAS_SERVED } from './constants';
+import {
+  COMPANY_NAME,
+  COMPANY_DESCRIPTION,
+  PHONE_NUMBER,
+  WHATSAPP_NUMBER,
+  AREAS_SERVED,
+} from './constants';
 
 interface FAQItem {
   q: string;
@@ -27,7 +33,7 @@ export function generateLocalBusinessSchema() {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: COMPANY_NAME,
-    image: 'https://hdsp.app/logo.jpg',
+    image: 'https://hdsp.pk/logo.jpg',
     telephone: PHONE_NUMBER,
     address: {
       '@type': 'PostalAddress',
@@ -39,7 +45,52 @@ export function generateLocalBusinessSchema() {
       name: `${area}, Karachi`,
     })),
     priceRange: 'PKR',
-    url: 'https://hdsp.app',
+    url: 'https://hdsp.pk',
+  };
+}
+
+export function generateOrganizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'HDSP',
+    alternateName: 'Home Domestic Services Provider',
+    description: COMPANY_DESCRIPTION,
+    url: 'https://hdsp.pk',
+    logo: 'https://hdsp.pk/logo.jpg',
+    telephone: PHONE_NUMBER,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: PHONE_NUMBER,
+      contactType: 'customer service',
+      availableLanguage: ['Urdu', 'English'],
+    },
+    sameAs: [`https://wa.me/${WHATSAPP_NUMBER}`],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Karachi',
+      addressCountry: 'PK',
+    },
+    areaServed: AREAS_SERVED.map((area) => ({
+      '@type': 'City',
+      name: `${area}, Karachi`,
+    })),
+  };
+}
+
+export function generateWebsiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'HDSP — Home Domestic Services Provider',
+    url: 'https://hdsp.pk',
+    description: COMPANY_DESCRIPTION,
+    inLanguage: ['ur', 'en'],
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://hdsp.pk/?q={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
   };
 }
 
@@ -92,7 +143,7 @@ export function generateServiceSchema({
       '@type': 'City',
       name: `${area}, Karachi`,
     })),
-    url: 'https://hdsp.app',
+    url: 'https://hdsp.pk',
     telephone: PHONE_NUMBER,
   };
 }

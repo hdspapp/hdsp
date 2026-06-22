@@ -1,4 +1,22 @@
 User-agent: *
 Allow: /
 
+# AI crawler directives — these bots are explicitly allowed to
+# enable Generative Engine Optimization (GEO) for AI search.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://hdsp.pk/sitemap.xml
