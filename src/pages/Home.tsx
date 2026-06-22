@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion } from 'motion/react';
 import {
   MessageCircle,
@@ -6,8 +7,19 @@ import {
   Baby,
   Car,
 } from 'lucide-react';
-import { WHATSAPP_LINK, PHONE_NUMBER } from '../data/constants';
+import {
+  WHATSAPP_LINK,
+  PHONE_NUMBER,
+  COMPANY_DESCRIPTION,
+} from '../data/constants';
+import { generateLocalBusinessSchema } from '../data/schema';
+import useSEO from '../hooks/useSEO';
 import TrustBar from '../components/TrustBar';
+import AnimatedServiceCard from '../components/AnimatedServiceCard';
+import MaidCleaner from '../components/illustrations/MaidCleaner';
+import ChefCook from '../components/illustrations/ChefCook';
+import Nanny from '../components/illustrations/Nanny';
+import Driver from '../components/illustrations/Driver';
 
 const Hero = () => (
   <section className="bg-accent text-white py-20 md:py-32 relative overflow-hidden">
@@ -112,37 +124,38 @@ const PainPoints = () => {
   );
 };
 
-const serviceImages = [
-  '/images/maid-cleaning.jpg',
-  '/images/chef-cooking.jpg',
-  '/images/nanny-toddlers.jpg',
-  '/images/driver-car.jpg',
+const services = [
+  {
+    icon: HomeIcon,
+    title: 'Maid Service',
+    desc: 'Household cleaning, laundry & daily management',
+    cta: 'Hire a Maid',
+    illustration: <MaidCleaner className="w-full h-full" />,
+  },
+  {
+    icon: ChefHat,
+    title: 'Home Cooks',
+    desc: 'Trained cooks for daily meals & special occasions',
+    cta: 'Hire a Cook',
+    illustration: <ChefCook className="w-full h-full" />,
+  },
+  {
+    icon: Baby,
+    title: 'Nannies',
+    desc: 'Trusted childcare professionals for your family',
+    cta: 'Hire a Nanny',
+    illustration: <Nanny className="w-full h-full" />,
+  },
+  {
+    icon: Car,
+    title: 'Drivers',
+    desc: 'Licensed, verified drivers for family use',
+    cta: 'Hire a Driver',
+    illustration: <Driver className="w-full h-full" />,
+  },
 ];
 
 const Services = () => {
-  const items = [
-    {
-      icon: <HomeIcon className="w-8 h-8" />,
-      title: 'Maids',
-      desc: 'Household cleaning, laundry & daily management',
-    },
-    {
-      icon: <ChefHat className="w-8 h-8" />,
-      title: 'Chefs',
-      desc: 'Trained cooks for daily meals & special occasions',
-    },
-    {
-      icon: <Baby className="w-8 h-8" />,
-      title: 'Nannies',
-      desc: 'Trusted childcare professionals for your family',
-    },
-    {
-      icon: <Car className="w-8 h-8" />,
-      title: 'Drivers',
-      desc: 'Licensed, verified drivers for family use',
-    },
-  ];
-
   return (
     <section id="services" className="py-20">
       <div className="max-w-7xl mx-auto px-4">
@@ -154,32 +167,16 @@ const Services = () => {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((it, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ y: -8 }}
-              className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all cursor-default"
-            >
-              <div className="absolute inset-0">
-                <img
-                  src={serviceImages[idx]}
-                  alt={it.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10 group-hover:from-black/75 transition-colors" />
-              <div className="relative z-10 p-8 pt-48 flex flex-col items-center text-center min-h-[360px] justify-end">
-                <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mb-6 text-white group-hover:bg-accent group-hover:scale-110 transition-all">
-                  {it.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-3 text-white drop-shadow-sm">
-                  {it.title}
-                </h3>
-                <p className="text-sm text-white/80 leading-relaxed drop-shadow-sm">
-                  {it.desc}
-                </p>
-              </div>
-            </motion.div>
+          {services.map((s, idx) => (
+            <div key={idx}>
+              <AnimatedServiceCard
+                illustration={s.illustration}
+                icon={s.icon}
+                title={s.title}
+                description={s.desc}
+                ctaText={s.cta}
+              />
+            </div>
           ))}
         </div>
       </div>
@@ -340,6 +337,25 @@ const FinalCTA = () => (
 );
 
 export default function Home() {
+  useSEO({
+    title: 'HDSP — Home Domestic Services Provider | Karachi',
+    description: COMPANY_DESCRIPTION,
+    canonical: 'https://hdsp.pk/',
+  });
+
+  useEffect(() => {
+    const schema = generateLocalBusinessSchema();
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'local-business-schema';
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+    return () => {
+      const el = document.getElementById('local-business-schema');
+      if (el) el.remove();
+    };
+  }, []);
+
   return (
     <main>
       <Hero />
