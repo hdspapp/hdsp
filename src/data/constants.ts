@@ -231,6 +231,7 @@ export const AREA_DETAILS = {
 export const SERVICE_DATA = {
   maid: {
     slug: 'maid',
+    route: 'maid-service',
     name: 'Maid Service',
     badge: '✦ Verified Maid Service',
     heroHeadline: 'Maid Service in Karachi —',
@@ -349,6 +350,7 @@ export const SERVICE_DATA = {
   },
   'home-cook': {
     slug: 'home-cook',
+    route: 'home-cook-service',
     name: 'Home Cook Service',
     badge: '✦ Professional Home Cook Service',
     heroHeadline: 'Home Cook Service in Karachi —',
@@ -473,6 +475,7 @@ export const SERVICE_DATA = {
   },
   babysitter: {
     slug: 'babysitter',
+    route: 'babysitting-service',
     name: 'Babysitter & Nanny Service',
     badge: '✦ Trusted Childcare Professionals',
     heroHeadline: 'Babysitting & Nanny Service',
@@ -589,6 +592,7 @@ export const SERVICE_DATA = {
   },
   driver: {
     slug: 'driver',
+    route: 'driver-service',
     name: 'Driver Service',
     badge: '✦ Verified Family Drivers',
     heroHeadline: 'Driver Service in Karachi —',

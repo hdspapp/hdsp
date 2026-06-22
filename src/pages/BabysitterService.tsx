@@ -19,6 +19,7 @@ export default function BabysitterService() {
   useSEO({
     title: data.seoTitle,
     description: data.seoDescription,
+    canonical: `https://hdsp.pk/${data.route}`,
   });
 
   useEffect(() => {
